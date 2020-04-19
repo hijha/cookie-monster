@@ -12,13 +12,15 @@ chrome.tabs.onRemoved.addListener((tabId) => {
   const currentUrl = urls[tabId];
 
   chrome.storage.sync.get('whitelistedDomains', (data) => {
-    const domain = new URL(currentUrl).host.replace('www', '');
-    if (data.whitelistedDomains.includes(domain)) {
-      console.log(`${currentUrl} found in the list of whitelistedDomains.`);
-      chrome.cookies.getAll({ domain }, (cookies) => {
-        console.log("Clearing cookies for domain", domain, cookies);
-        clearCookies(cookies);
-      });
+    if (currentUrl) {
+      const domain = new URL(currentUrl).host.replace('www', '');
+      if (data.whitelistedDomains.includes(domain)) {
+        console.log(`${currentUrl} found in the list of whitelistedDomains.`);
+        chrome.cookies.getAll({ domain }, (cookies) => {
+          console.log("Clearing cookies for domain", domain, cookies);
+          clearCookies(cookies);
+        });
+      }
     }
   });
 });
