@@ -1,9 +1,10 @@
 'use strict';
 
-let whitelist = document.getElementById('whitelist');
+const whitelist = document.getElementById('whitelist');
+const settings = document.getElementById('settings');
 
 whitelist.onclick = () => {
-  const whitelistedUrls = [];
+  let whitelistedUrls = [];
 
   chrome.storage.sync.get('whitelistedUrls', (data) => {
     whitelistedUrls = data.whitelistedUrls;
@@ -17,3 +18,7 @@ whitelist.onclick = () => {
     });
   });
 };
+
+settings.onclick = () => {
+  chrome.tabs.create({ 'url': `chrome-extension://${chrome.runtime.id}/options.html`});
+}
