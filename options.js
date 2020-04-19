@@ -2,6 +2,9 @@
 
 let domains = [];
 
+/**
+ * Display values in local storage for whitelistedDomains
+ */
 chrome.storage.sync.get('whitelistedDomains', (data) => {
   domains = data.whitelistedDomains || [];
 
@@ -16,13 +19,14 @@ chrome.storage.sync.get('whitelistedDomains', (data) => {
 
 const deleteButton = document.getElementById('deleteButton');
 
+/**
+ * Remove whitelisted domains from the local storage
+ */
 deleteButton.onclick = () => {
   const selectedDomain = document.getElementById('whitelistedDomains').value;
-  chrome.storage.sync.get('whitelistedDomains', (data) => {
-    const updatedDomains = domains.filter(domain => domain !== selectedDomain);
-    chrome.storage.sync.set({'whitelistedDomains': updatedDomains}, () => {
-      console.log("Domains updated");
-      document.getElementById('deleteStatus').innerHTML = 'Updated Domains';
-    });
+  const updatedDomains = domains.filter(domain => domain !== selectedDomain);
+  chrome.storage.sync.set({ 'whitelistedDomains': updatedDomains }, () => {
+    console.log("Domains updated");
+    document.getElementById('deleteStatus').innerHTML = 'Updated Domains';
   });
 }

@@ -3,9 +3,10 @@
   "version": "0.1",
   "description": "Cleans up your cookies",
   "background": {
-    "scripts": ["background.js"],
+    "page": "background.html",
     "persistent": false
   },
+
   "permissions": [
     "tabs",
     "activeTab",
@@ -14,10 +15,12 @@
     "http://*/*",
     "https://*/*"
   ],
+
   "browser_action": {
     "default_title": "Cookie Monster",
     "default_popup": "popup.html"
   },
+
   "options_page": "options.html",
   "manifest_version": 2
 }

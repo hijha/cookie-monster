@@ -28,6 +28,12 @@ button:hover,
 button:active,
 button:focus {
   outline: none;
-  background-color: var(--red);
+  background-color: var(--light-red);
   color: var(--black);
+}
+
+.form {
+  padding: 15px 10px 15px 10px;
+  width: 20px;
+  text-align: center;
 }
